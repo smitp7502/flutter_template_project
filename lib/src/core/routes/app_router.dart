@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/src/core/routes/app_routes.dart';
 import 'package:flutter_template/src/core/utils/app_logger.dart';
 import 'package:flutter_template/src/features/auth/presentation/screens/login_screen.dart';
+import 'package:flutter_template/src/features/auth/presentation/screens/signup_screen.dart';
 import 'package:flutter_template/src/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter_template/src/features/splash/presentation/screens/splash_screen.dart';
 
@@ -13,6 +14,7 @@ class AppRouter {
       AppRoutes.splashScreen: SplashScreen(),
       AppRoutes.homeScreen: HomeScreen(),
       AppRoutes.loginScren: LoginScreen(),
+      AppRoutes.signupScreen: SignupScreen(),
     };
 
     return MaterialPageRoute(

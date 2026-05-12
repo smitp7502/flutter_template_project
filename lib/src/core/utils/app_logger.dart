@@ -68,7 +68,7 @@ class AppLogger {
 
     final tagText = tag != null && tag.isNotEmpty ? '[$tag] ' : '';
 
-    final prefix = '[$level] $timestamp $tagText';
+    final prefix = '$timestamp $tagText';
 
     final buffer = StringBuffer();
 
