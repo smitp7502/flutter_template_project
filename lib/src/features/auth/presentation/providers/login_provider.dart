@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/src/core/constants/storage_key.dart';
 import 'package:flutter_template/src/core/exceptions/app_exception.dart';
 import 'package:flutter_template/src/core/providers/app_provider.dart';
+import 'package:flutter_template/src/core/providers/loading_provider.dart';
 import 'package:flutter_template/src/core/services/storage_service.dart';
 import 'package:flutter_template/src/core/utils/app_logger.dart';
 import 'package:flutter_template/src/features/auth/data/datasources/mock/auth_mock_datasource_v1.dart';
@@ -33,6 +34,7 @@ class LoginNotifier extends Notifier<AuthState> {
 
   Future<void> login({required String email, required String password}) async {
     state = state.copyWith(isLoading: true);
+    ref.read(loadingProvider.notifier).show();
 
     try {
       final response = await _loginUsecase(
@@ -64,6 +66,7 @@ class LoginNotifier extends Notifier<AuthState> {
       ref.read(appProvider.notifier).showError("Something went wrong");
     } finally {
       state = state.copyWith(isLoading: false);
+      ref.read(loadingProvider.notifier).hide();
     }
   }
 }

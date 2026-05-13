@@ -5,10 +5,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/src/app.dart';
 import 'package:flutter_template/src/core/listerns/app_listener.dart';
 import 'package:flutter_template/src/core/routes/app_routes.dart';
-import 'package:flutter_template/src/core/utils/validators.dart';
 
 import 'package:flutter_template/src/features/auth/presentation/providers/signup_provider.dart';
 import 'package:flutter_template/src/features/auth/presentation/widgets/screen_switcher.dart';
+import 'package:flutter_template/src/shared/utils/validators.dart';
 import 'package:flutter_template/src/shared/widgets/app_button.dart';
 import 'package:flutter_template/src/shared/widgets/app_textfield.dart';
 
@@ -40,7 +40,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
     _passwordController = TextEditingController();
 
-    AppListener.listen(globalNavigatorKey.currentState!.context, ref);
+    AppListener.listen(ref);
   }
 
   @override
