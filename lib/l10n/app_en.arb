@@ -1,0 +1,28 @@
+{
+  "@@locale": "en",
+  "appName": "My App",
+  "login": "Login",
+  "logout": "Logout",
+  "email": "Email",
+  "password": "Password",
+  "submit": "Submit",
+  "cancel": "Cancel",
+  "welcomeMessage": "Welcome, {name}!",
+  "@welcomeMessage": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "home": "Home",
+  "homeScreen": "Home Screen",
+  "notifications": "Notifications",
+  "language": "Language",
+  "english": "English",
+  "gujarati": "Gujarati",
+  "currentLanguage": "Current language: {language}",
+  "@currentLanguage": {
+    "placeholders": {
+      "language": { "type": "String" }
+    }
+  }
+}

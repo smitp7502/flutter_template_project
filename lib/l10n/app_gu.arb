@@ -1,0 +1,18 @@
+{
+  "@@locale": "gu",
+  "appName": "મારી એપ",
+  "login": "લૉગિન",
+  "logout": "લૉગઆઉટ",
+  "email": "ઈમેઈલ",
+  "password": "પાસવર્ડ",
+  "submit": "સબમિટ કરો",
+  "cancel": "રદ કરો",
+  "welcomeMessage": "સ્વાગત છે, {name}!",
+  "home": "ઘર",
+  "homeScreen": "હોમ સ્ક્રીન",
+  "notifications": "સૂચનાઓ",
+  "language": "ભાષા",
+  "english": "અંગ્રેજી",
+  "gujarati": "ગુજરાતી",
+  "currentLanguage": "વર્તમાન ભાષા: {language}"
+}

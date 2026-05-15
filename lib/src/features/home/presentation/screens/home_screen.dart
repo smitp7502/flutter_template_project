@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/l10n/app_localizations.dart';
 import 'package:flutter_template/src/core/enums/permission_type.dart';
 
 import 'package:flutter_template/src/core/listerns/app_listener.dart';
+import 'package:flutter_template/src/core/providers/locale_provider.dart';
 import 'package:flutter_template/src/core/routes/app_routes.dart';
 import 'package:flutter_template/src/core/services/flushbar_service.dart';
 import 'package:flutter_template/src/core/services/permission_service.dart';
@@ -57,10 +59,38 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final currentLocale = ref.watch(localeProvider);
+
+    final currentLanguageLabel = currentLocale.languageCode == 'gu'
+        ? l10n.gujarati
+        : l10n.english;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: Text(l10n.appName),
         actions: [
+          PopupMenuButton<Locale>(
+            icon: const Icon(Icons.language),
+            tooltip: l10n.language,
+            onSelected: (locale) {
+              ref.read(localeProvider.notifier).setLocale(locale);
+            },
+            itemBuilder: (context) {
+              return [
+                CheckedPopupMenuItem(
+                  value: const Locale('en'),
+                  checked: currentLocale.languageCode == 'en',
+                  child: Text(l10n.english),
+                ),
+                CheckedPopupMenuItem(
+                  value: const Locale('gu'),
+                  checked: currentLocale.languageCode == 'gu',
+                  child: Text(l10n.gujarati),
+                ),
+              ];
+            },
+          ),
           PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert),
             onSelected: (value) async {
@@ -76,23 +106,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             },
             itemBuilder: (context) {
               return [
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: "notification",
                   child: Row(
                     children: [
-                      Icon(Icons.notifications_outlined),
-                      SizedBox(width: 12),
-                      Text("Notifications"),
+                      const Icon(Icons.notifications_outlined),
+                      const SizedBox(width: 12),
+                      Text(l10n.notifications),
                     ],
                   ),
                 ),
-                const PopupMenuItem(
+                PopupMenuItem(
                   value: "logout",
                   child: Row(
                     children: [
-                      Icon(Icons.logout),
-                      SizedBox(width: 12),
-                      Text("Logout"),
+                      const Icon(Icons.logout),
+                      const SizedBox(width: 12),
+                      Text(l10n.logout),
                     ],
                   ),
                 ),
@@ -101,7 +131,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ],
       ),
-      body: const Center(child: Text("Home Screen")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              l10n.homeScreen,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 16),
+            Text(l10n.welcomeMessage("User")),
+            const SizedBox(height: 8),
+            Text(l10n.currentLanguage(currentLanguageLabel)),
+          ],
+        ),
+      ),
     );
   }
 }
